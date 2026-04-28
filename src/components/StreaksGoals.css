@@ -2,9 +2,11 @@
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
-  padding: 1.5rem;
+  padding: 1.25rem;
   backdrop-filter: blur(20px);
   animation: fadeIn 0.5s ease 0.3s both;
+  flex: 1;
+  min-height: 0;
 }
 
 /* Streak */

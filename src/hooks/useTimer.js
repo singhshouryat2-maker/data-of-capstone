@@ -56,6 +56,14 @@ export function useTimer(initialMinutes = 25) {
     else start();
   }, [isRunning, start, pause]);
 
+  // Set duration in seconds directly (for seconds-based and custom durations)
+  const setDurationSeconds = useCallback((secs) => {
+    if (!isRunning && !isComplete) {
+      setDuration(secs);
+      setTimeLeft(secs);
+    }
+  }, [isRunning, isComplete]);
+
   return {
     timeLeft,
     duration,
@@ -67,6 +75,7 @@ export function useTimer(initialMinutes = 25) {
     pause,
     reset,
     toggle,
+    setDurationSeconds,
     setDuration: (mins) => {
       if (!isRunning && !isComplete) {
         setDuration(mins * 60);

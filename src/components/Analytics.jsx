@@ -8,7 +8,9 @@ function formatDate(dateStr) {
 
 function formatTime(seconds) {
   const m = Math.floor(seconds / 60);
-  return `${m}m`;
+  const s = seconds % 60;
+  if (m === 0) return `${s}s`;
+  return `${m}m ${s}s`;
 }
 
 export default function Analytics({ sessions }) {
@@ -64,7 +66,7 @@ export default function Analytics({ sessions }) {
       {/* Summary stats */}
       <div className="analytics-summary">
         <div className="summary-stat">
-          <span className="summary-value">{Math.round(stats.totalFocusTime / 60)}m</span>
+          <span className="summary-value">{formatTime(stats.totalFocusTime)}</span>
           <span className="summary-label">Total Focus</span>
         </div>
         <div className="summary-stat">

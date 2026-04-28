@@ -3,6 +3,7 @@ import './SessionHistory.css';
 function formatTime(seconds) {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
+  if (m === 0) return `${s}s`;
   return `${m}m ${s}s`;
 }
 

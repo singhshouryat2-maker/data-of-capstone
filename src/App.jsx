@@ -6,6 +6,7 @@ import Analytics from './components/Analytics';
 import Insights from './components/Insights';
 import SessionHistory from './components/SessionHistory';
 import StreaksGoals from './components/StreaksGoals';
+import Pomodoro from './components/Pomodoro';
 import { useTimer } from './hooks/useTimer';
 import {
   getSessions,
@@ -29,7 +30,7 @@ function App() {
   const [todaySessions, setTodaySessions] = useState(getTodaySessions);
   const [currentScore, setCurrentScore] = useState(0);
   const [sessionActive, setSessionActive] = useState(false);
-  const [activeTab, setActiveTab] = useState('focus'); // focus | analytics
+  const [activeTab, setActiveTab] = useState('focus'); // focus | pomodoro | analytics
 
   // Calculate live focus score
   useEffect(() => {
@@ -105,6 +106,13 @@ function App() {
             <span>⏱</span> Focus
           </button>
           <button
+            className={`nav-tab ${activeTab === 'pomodoro' ? 'active' : ''}`}
+            onClick={() => setActiveTab('pomodoro')}
+            id="nav-pomodoro-tab"
+          >
+            <span>🍅</span> Pomodoro
+          </button>
+          <button
             className={`nav-tab ${activeTab === 'analytics' ? 'active' : ''}`}
             onClick={() => setActiveTab('analytics')}
             id="nav-analytics-tab"
@@ -146,6 +154,8 @@ function App() {
               />
             </div>
           </div>
+        ) : activeTab === 'pomodoro' ? (
+          <Pomodoro />
         ) : (
           <div className="analytics-layout">
             <Analytics sessions={sessions} />
